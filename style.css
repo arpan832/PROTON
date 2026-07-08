@@ -1,0 +1,30 @@
+* {
+    padding: 0px;
+    margin: 0px,
+}
+
+.text{
+    justify-content: center;
+    align-items: center;
+    Display: flex;
+    background-color:black;
+}
+
+body {
+    background-color: rgb(251, 251, 251);
+    border:0;
+    margin:0;
+}
+
+.typewrite{
+    color:white;
+    display:flex;
+    padding: 350px;
+    justify-content:center;
+    align-items:center;
+    margin:20px;
+    top:50px;
+    width:100px;
+    background-color: black;
+    
+}
