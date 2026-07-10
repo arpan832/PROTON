@@ -1,17 +1,9 @@
-// const time = document.getElementById("clock")
-
-// function displaytime() {
-//     const hour = new Date()
-//     time.textContent = hour.toLocaleTimeString();
-// }
-// displaytime();
-// setInterval(displaytime, 1000)
 
 let TxtType = function(el, toRotate, period) {
         this.toRotate = toRotate;
         this.el = el;
         this.loopNum = 0;
-        this.period = parseInt(period, 100000) || 2000;
+        this.period = parseInt(period, 10) || 2000;
         this.txt = '';
         this.tick();
         this.isDeleting = false;
@@ -66,6 +58,16 @@ let TxtType = function(el, toRotate, period) {
 const texty = document.querySelector(".typewrite")
 texty.addEventListener('click', function(){
      this.style.display = 'none';
+     clock.classList.remove("Hidden");
+     clock.classList.add("visibility");
 
 });
 
+let clock = document.getElementById("clock")
+
+function time(){
+    const now = new Date();
+    clock.innerText = now.toLocaleTimeString();
+}
+time();
+setInterval(time,1000);
