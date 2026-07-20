@@ -1,4 +1,4 @@
-
+// BOOT LOGIC =====
 let TxtType = function(el, toRotate, period) {
         this.toRotate = toRotate;
         this.el = el;
@@ -38,7 +38,8 @@ let TxtType = function(el, toRotate, period) {
         setTimeout(function() {
         that.tick();
         }, delta);
-    };
+    }; // BOOT LOGIC ENDS HERE 
+    
 
     window.onload = function() {
         let  elements = document.getElementsByClassName('typewrite');
@@ -55,19 +56,35 @@ let TxtType = function(el, toRotate, period) {
         css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
         document.body.appendChild(css);
     };
+
+// SCREEN CHANGE LOGIC====
+let Desktop = document.getElementById("Desktop")
 const texty = document.querySelector(".typewrite")
 texty.addEventListener('click', function(){
      this.style.display = 'none';
-     clock.classList.remove("Hidden");
-     clock.classList.add("visibility");
+     clock.style.display = "block";
+     clock.style.color = "White";
+     Dati.style.display ="block";
+     Dati.style.display ="white";
+     Desktop.style.display="block";
+    
+}); 
 
-});
 
+// CLOCK LOGIC ====
 let clock = document.getElementById("clock")
-
+let Dati  = document.getElementById('Dati')
 function time(){
     const now = new Date();
     clock.innerText = now.toLocaleTimeString();
+     Dati.innerText = now.toLocaleDateString();
+
 }
 time();
 setInterval(time,1000);
+
+
+
+
+
+

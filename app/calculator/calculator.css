@@ -1,0 +1,35 @@
+.calculator {
+     width: 80px;
+     height: 80px;
+     z-index:3;
+     Display: flex;
+     position: relative;
+     left : 1400px;
+     top: 500px;
+     background-color: white;
+     justify-content: flex-start;
+     padding: 2px;
+     color: black;
+     transition: transform 0.3s ease, background-color 0.3s ease;
+     border-radius: 10px
+}
+
+
+.calculator:hover {
+     background-color: yellow;
+     animation: lafanimation 1.5s ease-in-out infinite;
+}
+
+@keyframes lafanimation {
+     0% {
+          transform: translateY(0px);
+     }
+
+     50% {
+          transform: translateY(-12px);
+
+     }
+     100%{
+          transform:translateY(0px);
+     }
+}

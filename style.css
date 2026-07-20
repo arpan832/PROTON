@@ -8,16 +8,21 @@
     align-items: center;
     Display: flex;
     background-color:black;
+    z-index:200;
+    position:relative;
+
+     
+
 }
 
 body {
-    background-color: rgb(251, 251, 251);
+    background-color: rgb(0, 0, 0);
     border:0;
     margin:0;
 }
 
 .typewrite{
-    color:white;
+    color:rgb(255, 255, 255);
     display:flex;
     padding: 350px;
     justify-content:center;
@@ -30,10 +35,26 @@ body {
 }
 .Hidden{
     display : none ;
-  
+    
 }
 
 .visibility{
     display:block;
+    color:rgb(0, 0, 0);
+}
+
+.Desktop{
+    width:100vw;
+    height:100vh;
+    object-fit:cover;
+    object-position:center;
+    z-index: 1;
+    position:fixed;
+    top:0;
+
+}
+
+#Dati{
     color:white;
+    padding-left:20px;
 }

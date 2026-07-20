@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="app/calculator/calculator.css">
     <title>Proto</title>
 </head>
 
@@ -12,13 +13,27 @@
     <div class="text">
 
         <h1>
-           <div  id="type"   class="typewrite" data-period="2000" data-type='[ "PROTON" ,"click it" ]'></div>
-                <span class="wrap"></span>
-                
-            </h1>
+            <div id="type" class="typewrite" data-period="2000" data-type='[ "PROTON" ,"click it" ]'></div>
+            <span class="wrap"></span>
+
+        </h1>
+
         <div id="clock" class="Hidden">00:00:00</div>
+        <div id="Dati" class="Hidden">Date:</div>
+
     </div>
+    <div class="Hidden" id="Desktop">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTkEX3130dSVDwdzPWf-g1qldkKLn2jcnPBrut88xpMA&s=10"
+            alt="this is a photo mkc" class="Desktop">
+
+        <div class="apps">
+            <div class="calculator" id="cal-box">
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="app/calculator/calculator.js"></script>
 </body>
 
 </html>
