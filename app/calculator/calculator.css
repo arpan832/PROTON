@@ -4,7 +4,7 @@
      z-index:3;
      Display: flex;
      position: relative;
-     left : 1400px;
+     right : -1400px;
      top: 500px;
      background-color: white;
      justify-content: flex-start;
@@ -16,7 +16,7 @@
 
 
 .calculator:hover {
-     background-color: yellow;
+     background-color: rgb(255, 255, 255);
      animation: lafanimation 1.5s ease-in-out infinite;
 }
 
@@ -32,4 +32,38 @@
      100%{
           transform:translateY(0px);
      }
+}
+
+.calc{
+     object-fit:cover;
+}
+
+.is-active{
+     width: 300px;
+     height: 300px;
+     z-index:4;
+     Display: flex;
+     position: absolute;
+     cursor:move;
+     left  : 500px;
+     justify-content:center;
+     top: 100px;
+     background-color: white;
+     justify-content: flex-start;
+     padding: 2px;
+     color: black;
+     transition: transform 0.3s ease, background-color 0.3s ease;
+     border-radius: 10px
+     
+}
+     
+.inputactive{
+     background-color: red;
+     z-index:5;
+     padding:50px;
+     width:100%;
+     display:flex;
+}
+.inputbutton{
+     display:none;
 }
