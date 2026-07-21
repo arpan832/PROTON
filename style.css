@@ -1,12 +1,12 @@
 * {
     padding: 0px;
-    margin: 0px,
+    margin: 0px;
 }
-
+ 
 .text{
     justify-content: center;
     align-items: center;
-    Display: flex;
+    display: flex;
     background-color:black;
     z-index:200;
     position:relative;

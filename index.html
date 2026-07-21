@@ -27,24 +27,35 @@
             alt="this is a photo mkc" class="Desktop">
 
         <div class="apps">
-            <div class="calculator" id="cal-box">
-                <img src="https://wumbo.net/symbols/pi/feature_hu_79c6cc70a649a0fe.png" alt="calc" class="calc">
+            <div class="calculator" id="cal-box" role="button" aria-label="Open calculator">
+                <img src="https://wumbo.net/symbols/pi/feature_hu_79c6cc70a649a0fe.png" alt="Calculator icon" class="calc">
             </div>
-            <div class="Bigcalculator">
-                <div id="cal-bigbox">
-                    <div class="Buttons">
-                        <div id="inputpanel" class='inputbutton' ></div>
-                        <div id="zero"></div>
-                        <div id="one"></div>
-                        <div id="two"></div>
-                        <div id="three"></div>
-                        <div id="four"></div>
-                        <div id="five"></div>
-                        <div id="six"></div>
-                        <div id="seven"></div>
-                        <div id="eight"></div>
-                        <div id="nine"></div>
-
+            <div class="calculator-panel" id="cal-bigbox" aria-hidden="true">
+                <div class="calculator-window">
+                    <div class="calculator-header">
+                        <span>Calculator</span>
+                        <button id="calc-close" type="button">?</button>
+                    </div>
+                    <div class="calculator-screen" id="calc-screen">0</div>
+                    <div class="calculator-keys">
+                        <button type="button" data-action="clear">C</button>
+                        <button type="button" data-action="percent">%</button>
+                        <button type="button" data-action="operator" data-value="/">÷</button>
+                        <button type="button" data-action="operator" data-value="*">×</button>
+                        <button type="button" data-action="digit" data-value="7">7</button>
+                        <button type="button" data-action="digit" data-value="8">8</button>
+                        <button type="button" data-action="digit" data-value="9">9</button>
+                        <button type="button" data-action="operator" data-value="-">-</button>
+                        <button type="button" data-action="digit" data-value="4">4</button>
+                        <button type="button" data-action="digit" data-value="5">5</button>
+                        <button type="button" data-action="digit" data-value="6">6</button>
+                        <button type="button" data-action="operator" data-value="+">+</button>
+                        <button type="button" data-action="digit" data-value="1">1</button>
+                        <button type="button" data-action="digit" data-value="2">2</button>
+                        <button type="button" data-action="digit" data-value="3">3</button>
+                        <button type="button" data-action="equals">=</button>
+                        <button type="button" data-action="digit" data-value="0" style="grid-column: span 2;">0</button>
+                        <button type="button" data-action="decimal" data-value=".">.</button>
                     </div>
                 </div>
             </div>
