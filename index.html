@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="app/calculator/calculator.css">
+    <link rel="stylesheet" href="app/Notepad/Notepad.css">
     <title>Proto</title>
 </head>
 
@@ -13,7 +14,7 @@
     <div class="text">
 
         <h1>
-            <div id="type" class="typewrite" data-period="2000" data-type='[ "PROTON" ,"click it" ]'></div>
+            <div id="type" class="typewrite" data-period="2000" data-type='[ "SpideyOs" ,"clickit" ]'></div>
             <span class="wrap"></span>
 
         </h1>
@@ -23,15 +24,32 @@
 
     </div>
     <div class="Hidden" id="Desktop">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTkEX3130dSVDwdzPWf-g1qldkKLn2jcnPBrut88xpMA&s=10"
-            alt="this is a photo mkc" class="Desktop">
+        <img src="desktop.jpg" alt="this is a photo mkc" class="Desktop">
+        <!-- so all the apps architecture will live here under the Desktop section -->
+     
+        <!-- FOR NOTEPAD -->
+       <div class="apps">
+        <div class="notepad" id="note-box" role="button" aria-label="Open notepad">
+            <img src="notepad.jpg" alt="Notepad icon" class="note-icon">
+        </div>
+        <div class="notepad-panel " id="note-bigbox" aria-hidden="true">
+            <div class="notepad-window">
+                <div class="notepad-header">
+                    <span>Notepad</span>
+                    <button id="note-close" type="button" aria-label="Close notepad">×</button>
+                </div>
+                <textarea id="note-textarea" placeholder="Type your notes here..."></textarea>
+                <button id="save-note" type="button" aria-label="Save note">Save</button>
+            </div>
+        </div>
+
+        <!-- FOR CALCULATOR APP-->
 
         <div class="apps">
             <div class="calculator" id="cal-box" role="button" aria-label="Open calculator">
-                <img src="https://wumbo.net/symbols/pi/feature_hu_79c6cc70a649a0fe.png" alt="Calculator icon"
-                    class="calc">
+                <img src="calculator (2).jpg" alt="Calculator icon" class="calc">
             </div>
-            <div class="calculator-panel" id="cal-bigbox" aria-hidden="true">
+            <div class="calculator-panel " id="cal-bigbox" aria-hidden="true">
                 <div class="calculator-window">
                     <div class="calculator-header">
                         <span>Calculator</span>
@@ -60,11 +78,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <script src="script.js"></script>
-    <script src="app/calculator/calculator.js"></script>
+            <!--- Here the architecture ends but all the apps should be stacked here like also the hotbar or taskbar -->
+        </div>
+
+        <script src="script.js"></script>
+        <script src="app/calculator/calculator.js"></script>
+        <script src="app/Notepad/Notepad.js"></script>
 </body>
 
 </html>

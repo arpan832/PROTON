@@ -153,7 +153,7 @@ if (calculatorPanel) {
 
 clearCalculator();
 // calculator panel toggle logic
-if (calculatorIcon && calculatorPanel) {
+if (calculatorIcon) {
   calculatorIcon.addEventListener('click', function (event) {
     toggleCalculator();
     event.stopPropagation();
@@ -165,12 +165,6 @@ if (calculatorIcon && calculatorPanel) {
       event.stopPropagation();
     });
   }
-
-  document.addEventListener('click', function (event) {
-    if (!calculatorPanel.contains(event.target) && !calculatorIcon.contains(event.target)) {
-      hideCalculator();
-    }
-  });
 }
 
 // draggable logic
