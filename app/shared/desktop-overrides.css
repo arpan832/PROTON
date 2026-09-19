@@ -1,0 +1,189 @@
+/* SPIDEY OS DESKTOP INTEGRATION - Preserve existing identity */
+
+/* Keep existing desktop.jpg but ensure proper layering */
+#Desktop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.Desktop {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1 !important;
+}
+
+/* Top status bar - spider HUD */
+#spidey-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: rgba(8,8,10,0.72);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 40;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+#spidey-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#spidey-topbar-logo {
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#spidey-topbar-logo span {
+  color: var(--spidey-red, #e10600);
+}
+
+#spidey-topbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ddd;
+}
+
+#spidey-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Rework floating apps to be responsive sidebar - preserve original look */
+.apps {
+  position: fixed !important;
+  right: 18px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  left: auto !important;
+  z-index: 30 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  width: auto !important;
+  height: auto !important;
+  pointer-events: auto;
+}
+
+/* Override legacy absolute positioning */
+.notepad, .calculator {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: 68px !important;
+  height: 68px !important;
+  margin: 0 !important;
+  background: rgba(255,255,255,0.92) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.6) inset !important;
+  transition: all 0.22s cubic-bezier(0.16,1,0.3,1) !important;
+  backdrop-filter: blur(8px);
+}
+
+.notepad:hover, .calculator:hover {
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.8) inset, 0 0 20px rgba(225,6,0,0.18) !important;
+}
+
+.note-icon, .calc {
+  border-radius: 10px;
+}
+
+/* Legacy panels - ensure they are managed */
+.notepad-panel, .calculator-panel {
+  z-index: 70 !important;
+}
+
+/* Add subtle red glow to desktop */
+#Desktop::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(800px circle at 80% 20%, rgba(225,6,0,0.06), transparent 50%),
+              radial-gradient(600px circle at 20% 80%, rgba(225,6,0,0.04), transparent 50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Boot screen preserve */
+.text {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 200 !important;
+  background: #000 !important;
+}
+
+.typewrite {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.typewrite:hover {
+  transform: scale(1.05);
+}
+
+/* Clock in topbar when desktop visible */
+#clock, #Dati {
+  color: #fff !important;
+  font-family: 'Segoe UI', monospace !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .apps {
+    right: 10px !important;
+    gap: 10px !important;
+  }
+  .notepad, .calculator {
+    width: 56px !important;
+    height: 56px !important;
+  }
+  #spidey-topbar {
+    height: 32px;
+    font-size: 10px;
+    padding: 0 10px;
+  }
+  #spidey-topbar-center {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .apps {
+    top: auto !important;
+    bottom: 80px !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    flex-direction: row !important;
+  }
+}

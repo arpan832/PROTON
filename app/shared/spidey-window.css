@@ -1,0 +1,309 @@
+/* SPIDEY OS - Shared Window System
+   Preserves existing desktop identity while adding holographic glass windows
+*/
+
+:root {
+  --spidey-red: #e10600;
+  --spidey-red-glow: rgba(225, 6, 0, 0.25);
+  --spidey-red-tint: rgba(225, 6, 0, 0.08);
+  --spidey-black: #0a0a0a;
+  --spidey-charcoal: #141414;
+  --spidey-glass: rgba(18, 18, 20, 0.84);
+  --spidey-glass-strong: rgba(12, 12, 14, 0.92);
+  --spidey-border: rgba(255, 255, 255, 0.08);
+  --spidey-border-red: rgba(225, 6, 0, 0.18);
+  --spidey-text: #f0f0f0;
+  --spidey-text-dim: #a0a0a0;
+}
+
+#window-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Core Spidey Window */
+.spidey-window {
+  position: fixed;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--spidey-glass);
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  border: 1px solid var(--spidey-border);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 
+    0 24px 64px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 0 32px var(--spidey-red-glow),
+    0 1px 0 rgba(255,255,255,0.06) inset;
+  border-radius: 16px;
+  min-width: 320px;
+  min-height: 240px;
+  overflow: hidden;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.spidey-window::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(225,6,0,0.5), transparent);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.spidey-window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(225,6,0,0.06), transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spidey-window:hover::after {
+  opacity: 1;
+}
+
+.spidey-window.focused {
+  border-color: var(--spidey-border-red);
+  box-shadow: 
+    0 28px 80px rgba(0,0,0,0.75),
+    0 0 0 1px rgba(255,255,255,0.06) inset,
+    0 0 40px rgba(225,6,0,0.18),
+    0 1px 0 rgba(255,255,255,0.08) inset;
+  z-index: 100 !important;
+}
+
+.spidey-window.minimized {
+  opacity: 0;
+  transform: scale(0.92) translateY(20px);
+  pointer-events: none;
+}
+
+/* Header */
+.spidey-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+  border-bottom: 1px solid var(--spidey-border);
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.spidey-window-header:active {
+  cursor: grabbing;
+}
+
+.spidey-window-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--spidey-text);
+}
+
+.spidey-window-title-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: rgba(225,6,0,0.15);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  overflow: hidden;
+}
+
+.spidey-window-title-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.spidey-window-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.spidey-win-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: var(--spidey-text-dim);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: all 0.18s ease;
+}
+
+.spidey-win-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--spidey-text);
+  transform: translateY(-1px);
+}
+
+.spidey-win-btn.close:hover {
+  background: rgba(225,6,0,0.85);
+  border-color: rgba(225,6,0,0.9);
+  color: white;
+  box-shadow: 0 4px 16px rgba(225,6,0,0.4);
+}
+
+.spidey-win-btn.minimize:hover {
+  background: rgba(255,200,0,0.18);
+  border-color: rgba(255,200,0,0.25);
+}
+
+/* Body */
+.spidey-window-body {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
+  scrollbar-width: thin;
+  scrollbar-color: rgba(225,6,0,0.3) transparent;
+}
+
+.spidey-window-body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.spidey-window-body::-webkit-scrollbar-thumb {
+  background: rgba(225,6,0,0.3);
+  border-radius: 10px;
+}
+
+.spidey-window-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Animations */
+@keyframes spideyWindowIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes spideyWindowOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+  }
+}
+
+.spidey-window.entering {
+  animation: spideyWindowIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.spidey-window.exiting {
+  animation: spideyWindowOut 0.22s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* Resize handle */
+.spidey-resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  cursor: nwse-resize;
+  z-index: 10;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.spidey-resize-handle:hover {
+  opacity: 1;
+}
+
+.spidey-resize-handle::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(255,255,255,0.25);
+  border-bottom: 2px solid rgba(255,255,255,0.25);
+  border-radius: 0 0 2px 0;
+}
+
+/* Spider sense pulse */
+.spider-sense {
+  position: relative;
+}
+
+.spider-sense::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(225,6,0,0.15), transparent 70%);
+  animation: spiderPulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes spiderPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.08); opacity: 0.15; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .spidey-window {
+    min-width: 0;
+    width: calc(100vw - 16px) !important;
+    max-width: calc(100vw - 16px);
+    left: 8px !important;
+    right: 8px;
+    border-radius: 14px;
+  }
+  .spidey-window-body {
+    max-height: 70vh;
+  }
+}
+
+/* Preserve legacy panels but upgrade subtly if they get spidey class */
+.notepad-panel.spidey-legacy,
+.calculator-panel.spidey-legacy {
+  background: var(--spidey-glass) !important;
+  backdrop-filter: blur(22px);
+  border: 1px solid var(--spidey-border-red);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 32px var(--spidey-red-glow);
+}
