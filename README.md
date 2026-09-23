@@ -4,13 +4,17 @@ An immersive Spider-Man-inspired browser desktop environment built from scratch 
 
 Built for **Hack Club Stardance**.
 
-> Created by [Your Name]
+> Created by [@ari001]
 
 ## Demo
 
 Live demo: [Live Demo URL]
-
+## picture 
 Spidey OS starts with a cinematic boot experience, then opens into a draggable desktop environment with apps, a taskbar, music controls, news, weather, and more.
+
+<img width="1915" height="1063" alt="Screenshot 2026-09-23 113211" src="https://github.com/user-attachments/assets/902a7ac6-dae1-4c4e-b367-1df71e6fc661" />
+
+<img width="1917" height="1078" alt="Screenshot 2026-09-23 113237" src="https://github.com/user-attachments/assets/8f550390-9fdc-4cde-9664-d0a97dcbb044" />
 
 ## Features
 
@@ -167,8 +171,8 @@ You can replace the desktop background, boot video, Spider-Man artwork, app icon
 
 Built for **Hack Club Stardance**.
 
-Created by **[Your Name]**.
+Created by **[@ari001]**.
 
 ## License
 
-License: **[Choose a license before publishing]**
+License: **[Mit license]**
