@@ -1,6 +1,6 @@
 # Spidey OS
 
-An immersive Spider-Man-inspired browser desktop environment built from scratch with HTML, CSS, and vanilla JavaScript.
+An immersive Spider-Man-inspired web os  built from scratch with HTML, CSS, and vanilla JavaScript.
 
 Built for **Hack Club Stardance**.
 
