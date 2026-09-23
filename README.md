@@ -45,8 +45,8 @@ Spidey OS starts with a cinematic boot experience, then opens into a draggable d
 ### Clone the project
 
 ```bash
-git clone [Repository URL]
-cd [Repository Folder]
+git clone ['https://github.com/arpan832/SpideyOs']
+cd [Projects/SpideyOs]
 ```
 
 ### Run the project
@@ -56,13 +56,13 @@ Spidey OS does not require npm, a bundler, or a build step. You can open `index.
 For the best experience, serve the project with a local static server because local servers handle video, audio, and API requests more consistently:
 
 ```bash
-python -m http.server 8000
+python -m http.server 5000
 ```
 
 Then open:
 
 ```text
-http://localhost:8000
+http://localhost:5000
 ```
 
 The first click on the boot screen starts the intro audio. This is required because modern browsers block audible autoplay until the visitor interacts with the page.
