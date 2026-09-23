@@ -1,11 +1,11 @@
 /* DAILY BUGLE NEWS SERVICE - Abstraction layer for swappable providers */
-
 const NEWS_CACHE_KEY = 'spidey-bugle-cache-v1';
 const NEWS_CACHE_TTL = 1000 * 60 * 15; // 15 min
+const PERIGON_API_URL = 'https://api.perigon.io/v1/articles/all';
 
 class NewsService {
   constructor() {
-    this.provider = 'fallback'; // can be 'fallback', 'newsapi', 'gnews', 'rss', 'hackernews', etc.
+    this.provider = 'perigon'; // can be 'perigon', 'newsapi', 'gnews', 'hackernews', etc.
     this.apiKey = null;
     this.initConfig();
   }
@@ -19,10 +19,13 @@ class NewsService {
     } catch {}
     if (window.SPIDEY_NEWS_API_KEY) this.apiKey = window.SPIDEY_NEWS_API_KEY;
     if (window.SPIDEY_NEWS_PROVIDER) this.provider = window.SPIDEY_NEWS_PROVIDER;
+
+    // Keep older saved configs working.
+    if (this.provider === 'perigon.io') this.provider = 'perigon';
   }
 
   setConfig({ provider, apiKey }) {
-    if (provider) this.provider = provider;
+    if (provider) this.provider = provider === 'perigon.io' ? 'perigon' : provider;
     if (apiKey) this.apiKey = apiKey;
     try {
       localStorage.setItem('spidey-news-config', JSON.stringify({ provider: this.provider, apiKey: this.apiKey }));
@@ -31,6 +34,9 @@ class NewsService {
 
   async fetchFromProvider({ category, search }) {
     // Attempt real API if configured
+    if (this.provider === 'perigon' && this.apiKey) {
+      return await this.fetchPerigon({ category, search });
+    }
     if (this.provider === 'newsapi' && this.apiKey) {
       return await this.fetchNewsAPI({ category, search });
     }
@@ -50,6 +56,53 @@ class NewsService {
     }
     // If no provider or failed, return fallback
     return this.getFallback({ category, search });
+  }
+
+  async fetchPerigon({ category, search }) {
+    const params = new URLSearchParams({
+      language: 'en',
+      size: '30',
+      sortBy: 'date'
+    });
+    if (search) params.set('q', search);
+
+    const res = await fetch(`${PERIGON_API_URL}?${params.toString()}`, {
+      headers: {
+        Accept: 'application/json',
+        'x-api-key': this.apiKey
+      }
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(`Perigon error ${res.status}: ${data.message || 'request failed'}`);
+    }
+    if (data.status && data.status !== 200) {
+      throw new Error(data.message || `Perigon error ${data.status}`);
+    }
+
+    return (data.articles || []).map((article, index) => {
+      const text = [
+        article.title,
+        article.description,
+        article.summary,
+        article.content,
+        Array.isArray(article.topics) ? article.topics.join(' ') : ''
+      ].filter(Boolean).join(' ');
+
+      return {
+        id: `perigon-${article.articleId || index}-${Date.now()}`,
+        title: article.title || 'Untitled article',
+        excerpt: article.description || article.summary || article.content || 'Read the full story at the original source.',
+        content: article.content || article.description || article.summary || '',
+        category: this.inferCategory(text, category),
+        timestamp: article.pubDate || article.addDate || new Date().toISOString(),
+        source: article.source?.domain || 'Perigon',
+        image: article.imageUrl || null,
+        url: article.url || null,
+        isFallback: false,
+        breaking: false
+      };
+    });
   }
 
   async fetchNewsAPI({ category, search }) {

@@ -57,27 +57,81 @@ let TxtType = function(el, toRotate, period) {
         document.body.appendChild(css);
     };
 
-// SCREEN CHANGE LOGIC====
-let Desktop = document.getElementById("Desktop")
-const texty = document.querySelector(".typewrite")
-texty.addEventListener('click', function(){
-     this.style.display = 'none';
-     clock.style.display = "block";
-     clock.style.color = "White";
-     Dati.style.display ="block";
-     Dati.style.display ="white";
-     Desktop.style.display="block";
-    
-}); 
-
-
 // CLOCK LOGIC ====
-let clock = document.getElementById("clock")
-let Dati  = document.getElementById('Dati')
+const Desktop = document.getElementById("Desktop");
+const bootScreen = document.getElementById("boot-screen");
+const texty = document.querySelector(".typewrite");
+const clock = document.getElementById("clock");
+const Dati = document.getElementById('Dati');
+const bootVideo = document.getElementById('boot-video');
+const welcome = document.getElementById('boot-welcome');
+const welcomeDismiss = document.getElementById('boot-welcome-dismiss');
+let hasEntered = false;
+let welcomeTimer;
+
+if (bootVideo) {
+    bootVideo.addEventListener('error', () => {
+        bootScreen?.classList.add('boot-video-failed');
+    });
+}
+
+function dismissWelcome() {
+    if (!welcome) return;
+    welcome.classList.remove('is-visible');
+    welcome.setAttribute('aria-hidden', 'true');
+    clearTimeout(welcomeTimer);
+}
+
+function showDesktop() {
+    if (!Desktop || !bootScreen || hasEntered) return;
+    hasEntered = true;
+
+    // The first user gesture unlocks audible playback in modern browsers.
+    if (window.SpidyAudio) {
+        window.SpidyAudio.loadTrack(window.SPIDY_AUDIO_TRACKS?.intro);
+        window.SpidyAudio.enableSoundForUserGesture?.();
+        window.SpidyAudio.play().catch((error) => {
+            console.warn('Intro audio could not be started:', error.message || error);
+        });
+    }
+
+    if (bootVideo) {
+        bootVideo.pause();
+        bootVideo.currentTime = bootVideo.currentTime || 0;
+    }
+    bootScreen.classList.add('is-dismissed');
+    Desktop.classList.remove('Hidden');
+    Desktop.style.display = "block";
+    if (clock) clock.style.display = "block";
+    if (Dati) {
+        Dati.style.display = "block";
+        Dati.style.color = "white";
+    }
+
+    if (welcome) {
+        welcome.classList.add('is-visible');
+        welcome.setAttribute('aria-hidden', 'false');
+        welcomeTimer = setTimeout(dismissWelcome, 6000);
+    }
+}
+
+// SCREEN CHANGE LOGIC ====
+if (bootScreen) bootScreen.addEventListener('click', showDesktop);
+if (bootScreen) bootScreen.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        showDesktop();
+    }
+});
+if (welcomeDismiss) welcomeDismiss.addEventListener('click', dismissWelcome);
+if (welcome) welcome.addEventListener('click', (event) => {
+    if (event.target === welcome) dismissWelcome();
+});
+
 function time(){
     const now = new Date();
-    clock.innerText = now.toLocaleTimeString();
-     Dati.innerText = now.toLocaleDateString();
+    if (clock) clock.innerText = now.toLocaleTimeString();
+    if (Dati) Dati.innerText = now.toLocaleDateString();
 
 }
 time();

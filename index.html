@@ -12,15 +12,25 @@
     <link rel="stylesheet" href="app/taskbar/taskbar.css">
     <link rel="stylesheet" href="app/weather/weather.css">
     <link rel="stylesheet" href="app/bugle/bugle.css">
-    <title>SPIDEY OS // Proto</title>
+    <link rel="stylesheet" href="popup/popup.css">
+    <link rel="stylesheet" href="app/music/music.css">
+    <title>SPIDEY OS</title>
 </head>
 <body>
-    <!-- BOOT SCREEN - Preserved -->
-    <div class="text">
-        <h1>
-            <div id="type" class="typewrite" data-period="2000" data-type='[ "SpideyOs" , "clickit" ]'></div>
-            <span class="wrap"></span>
-        </h1>
+    <!-- IMMERSIVE BOOT SCREEN -->
+    <div class="text" id="boot-screen" role="button" tabindex="0" aria-label="Enter Spidey OS">
+        <video id="boot-video" class="boot-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source src="spiderman-symbol.mp4" type="video/mp4">
+        </video>
+        <div class="boot-vignette" aria-hidden="true"></div>
+        <div class="boot-content">
+            <div class="boot-kicker">Friendly Neighborhood System</div>
+            <h1>
+                <span id="type" class="typewrite" data-period="2000" data-type='[ "Spidey OS" , "Click it" ]'></span>
+            </h1>
+            <p class="boot-prompt">Click anywhere to enter</p>
+            <span class="boot-prompt-line" aria-hidden="true"></span>
+        </div>
         <div id="clock" class="Hidden">00:00:00</div>
         <div id="Dati" class="Hidden">Date..</div>
     </div>
@@ -48,6 +58,50 @@
 
         <!-- Window Layer for new apps -->
         <div id="window-layer"></div>
+
+        <!-- Global music controls -->
+        <div id="global-audio-player" aria-label="Global music player">
+            <button class="global-audio-button" data-global-audio-toggle type="button" aria-label="Play music">▶</button>
+            <div class="global-audio-info" data-global-audio-open role="button" tabindex="0">
+                <span class="global-audio-title" data-global-audio-title>No track loaded</span>
+            </div>
+            <button class="global-audio-button" data-global-audio-mute type="button" aria-label="Mute music">🔊</button>
+            <input class="global-audio-seek" data-global-audio-seek type="range" min="0" max="0" value="0" step="0.1" aria-label="Seek through music">
+            <span class="global-audio-progress" data-global-audio-progress></span>
+        </div>
+
+        <!-- Immersive welcome card shown after boot -->
+        <div id="boot-welcome" class="boot-welcome" aria-hidden="true">
+            <button id="boot-welcome-dismiss" class="boot-welcome-dismiss" type="button" aria-label="Dismiss welcome message">×</button>
+            <div class="boot-web-accent" aria-hidden="true"></div>
+            <img class="boot-spiderman" src="spiderman.png" alt="Spider-Man hanging from a web">
+            <div class="boot-welcome-card">
+                <span class="boot-welcome-eyebrow">System online</span>
+                <h2>Welcome to Spidey OS</h2>
+                <p>Built for Hack Club Stardance</p>
+                <span class="boot-welcome-credit">Created by @Ari001</span>
+            </div>
+        </div>
+
+        <!-- Left-side picture slideshow -->
+        <aside id="picture-popup" class="picture-popup" aria-label="Picture slideshow">
+            <div class="picture-popup-header">
+                <span>USSS!!!</span>
+                <button id="picture-popup-close" class="picture-popup-close" type="button" aria-label="Close picture feed">×</button>
+            </div>
+            <div class="picture-popup-stage">
+                <img id="picture-popup-image" src="" alt="Slideshow picture">
+                <div id="picture-popup-empty" class="picture-popup-empty" hidden>
+                    Add pictures to <code>popup/images</code>
+                </div>
+                <button id="picture-popup-prev" class="picture-popup-control prev" type="button" aria-label="Previous picture">‹</button>
+                <button id="picture-popup-next" class="picture-popup-control next" type="button" aria-label="Next picture">›</button>
+            </div>
+            <div class="picture-popup-footer">
+                <span id="picture-popup-counter">0 / 0</span>
+                <div id="picture-popup-dots" class="picture-popup-dots" aria-label="Choose picture"></div>
+            </div>
+        </aside>
 
         <!-- Floating App Buttons - Preserved (right side) -->
         <div class="apps" id="legacy-apps-dock">
@@ -106,6 +160,7 @@
     </div>
 
     <!-- Scripts: Order matters -->
+    <script src="app/music/audioManager.js"></script>
     <script src="script.js"></script>
     <!-- Services -->
     <script src="app/weather/weatherService.js"></script>
@@ -113,12 +168,14 @@
     <script src="app/bugle/newsService.js"></script>
     <!-- App Components -->
     <script src="app/stubs/stubs.js"></script>
+    <script src="app/music/music.js"></script>
     <script src="app/weather/weather.js"></script>
     <script src="app/bugle/bugle.js"></script>
     <!-- Core OS -->
     <script src="app/registry.js"></script>
     <script src="app/windowManager.js"></script>
     <script src="app/taskbar/taskbar.js"></script>
+    <script src="popup/popup.js"></script>
     <!-- Legacy Apps (now integrated) -->
     <script src="app/calculator/calculator.js"></script>
     <script src="app/Notepad/Notepad.js"></script>

@@ -34,7 +34,6 @@ function createStubApp(id, name, emoji, description) {
 
 window.BrowserApp = createStubApp('browser', 'Web Crawler', '🕸️', 'Quantum-encrypted browser with spider-silk security protocol. Browse the web like Peter Parker swings through Manhattan.');
 window.GalleryApp = createStubApp('gallery', 'Photo Lab', '📸', 'Peter Parker\'s photo lab. Auto-enhances, tags, and organizes your shots. Stark-enhanced image processing.');
-window.MusicApp = createStubApp('music', 'Spidey Mix', '🎧', 'Friendly neighborhood beats. Adaptive audio that matches your patrol rhythm and heart rate.');
 window.FilesApp = createStubApp('files', 'Web Files', '📁', 'File system with organic web-structure. Files are stored in a bio-neural network inspired by spider silk.');
 window.SettingsApp = createStubApp('settings', 'Suit Lab', '⚙️', 'Customize your suit OS, web-shooters, and HUD. Red tint intensity, blur level, and spider-sense sensitivity.');
 window.TerminalApp = createStubApp('terminal', 'Spider-Term', '>_', 'Root access to Spidey OS. Type "help" for commands. Warning: With great power comes great responsibility.\n\n$ whoami\n> friendly-neighborhood-spider-man');

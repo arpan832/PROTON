@@ -138,6 +138,15 @@
   inset: 0 !important;
   z-index: 200 !important;
   background: #000 !important;
+  transition: opacity 180ms ease, visibility 180ms ease;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.text.is-dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .typewrite {
@@ -147,6 +156,26 @@
 
 .typewrite:hover {
   transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-prompt,
+  .boot-spiderman,
+  .boot-web-accent,
+  .boot-welcome-card {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .boot-spiderman {
+    width: min(190px, 48vw);
+    max-height: 42vh;
+  }
+  .boot-welcome-card {
+    margin-top: min(30vh, 220px);
+    padding: 22px 18px;
+  }
 }
 
 /* Clock in topbar when desktop visible */
