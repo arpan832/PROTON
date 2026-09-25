@@ -15,10 +15,10 @@ then locate the directory
 cd Spideyos
 ```
 And now its yours you can play with it 
-## Stack - 
-# 1.HTML 5 
-# 2.CSS 
-# 3.VANILLA JS 
+# Stack - 
+## 1.HTML 5 
+## 2.CSS 
+## 3.VANILLA JS 
 
 # Api 
 if you want to load the current api you can go to the news you can just grab a link from a news prover and paste it inside your console 
