@@ -18,7 +18,7 @@ git clone https://github.com/arpan832/SpideyOs/
 ```
 then locate the directory 
 ```bash
-cd Spideyos
+cd SpideyOs
 ```
 And now its yours you can play with it 
 # Stack - 
