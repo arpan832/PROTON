@@ -19,9 +19,9 @@ cd Spideyos
 ```
 And now its yours you can play with it 
 ## Stack - 
-1.HTML 5 
-2.CSS 
-3.VANILLA JS 
+# 1.HTML 5 
+# 2.CSS 
+# 3.VANILLA JS 
 
 
 
