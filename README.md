@@ -13,7 +13,15 @@ you can clone this repo from
 ```bash
 git clone https://github.com/arpan832/SpideyOs/
 ```
-
+then locate the directory 
+```bash
+cd Spideyos
+```
+And now its yours you can play with it 
+## Stack - 
+1.HTML 5 
+2.CSS 
+3.VANILLA JS 
 
 
 
