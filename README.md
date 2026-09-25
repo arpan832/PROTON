@@ -10,7 +10,7 @@ Description - So this is an os for web that is inspired by our friendly neighbou
  - Daily Bugle - My fav app is the Daily Bugle news app where you can read some cool superhero news 
  - Camera and other - some tools are still underconstruction those will be workable for the later version of the os for WebOs2 
   2. UI - 
- - i used red and black color ui for the whole theme of the os with translucent background for the apps 
+ - I used red and black color ui for the whole theme of the os with translucent background for the apps 
  
 
 ## Preview - 
@@ -33,9 +33,9 @@ cd SpideyOs
 ```
 And now its yours you can play with it 
 # Stack - 
-1.HTML 5 ,
-2.CSS ,
-3.VANILLA JS 
+1. HTML 5 
+2. CSS 
+3. VANILLA JS 
 
 # Api 
 if you want to load the current newz info  you can go to the news api provider and can just grab a link from the news provider and paste it inside your console 
