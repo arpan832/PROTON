@@ -3,14 +3,14 @@ Description - So this is an os for web that is inspired by our friendly neighbou
 
 # Features 
 1. Apps - 
- -Notepad - It has a notepad where you can write notes 
- -Weather - It has a weather that you can use to your local area weather 
- -Music Player - It has a music player that you can control music plays on the background 
- -Calculator - It also has a calculator where you can do some basic maths 
- -Daily Bugle - My fav app is the Daily Bugle news app where you can read some cool superhero news 
- -Camera and other - some tools are still underconstruction those will be workable for the later version of the os for WebOs2 
+ - Notepad - It has a notepad where you can write notes 
+ - Weather - It has a weather that you can use to your local area weather 
+ - Music Player - It has a music player that you can control music plays on the background 
+ - Calculator - It also has a calculator where you can do some basic maths 
+ - Daily Bugle - My fav app is the Daily Bugle news app where you can read some cool superhero news 
+ - Camera and other - some tools are still underconstruction those will be workable for the later version of the os for WebOs2 
   2. UI - 
- -i used red and black color ui for the whole theme of the os with translucent background for the apps 
+ - i used red and black color ui for the whole theme of the os with translucent background for the apps 
  
 
 ## Preview - 
