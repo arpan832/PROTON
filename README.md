@@ -27,7 +27,7 @@ And now its yours you can play with it
 3.VANILLA JS 
 
 # Api 
-if you want to load the current api you can go to the news you can just grab a link from a news prover and paste it inside your console 
+if you want to load the current newz info  you can go to the news api provider and can just grab a link from the news provider and paste it inside your console 
 ```javascript
 localStorage.setItem('spidey-news-config',
 JSON.stringify({provider:'newsapi', apiKey:'YOUR_KEY'}))
