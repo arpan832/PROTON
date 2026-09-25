@@ -1,5 +1,6 @@
 # SpideyOs
-Description - So this is an os for web that is inspired by our friendly neighbourhood spiderman it uses simple stack as html , css and js no library no framework using this is preety easy and fun it has a left pop up screen that can upset fans a lil bit but its okay .. i spent many hours on this project and the part one is finally here . it
+Description - So this is an os for web that is inspired by our friendly neighbourhood spiderman it uses simple stack as html , css and js no library no framework using this is preety easy and fun it has a left pop up screen that can upset fans a lil bit but its okay .. i spent many hours on this project and the part one is finally here . it has many apps like you can listen to music yeah it has a music tho you have to turn the volume up to listen to it you can also see the weather of your loction with specified Spiderman Ui design with translucent back .. 
+
 
 ## Preview - 
 <img width="1917" height="967" alt="Screenshot 2026-09-23 113607" src="https://github.com/user-attachments/assets/613d1b64-d018-477f-ae94-3c7b688749ce" />
@@ -21,9 +22,9 @@ cd Spideyos
 ```
 And now its yours you can play with it 
 # Stack - 
-## 1.HTML 5 
-## 2.CSS 
-## 3.VANILLA JS 
+1.HTML 5 ,
+2.CSS ,
+3.VANILLA JS 
 
 # Api 
 if you want to load the current api you can go to the news you can just grab a link from a news prover and paste it inside your console 
@@ -32,7 +33,9 @@ localStorage.setItem('spidey-news-config',
 JSON.stringify({provider:'newsapi', apiKey:'YOUR_KEY'}))
 ```
 
+## Made with love by [@Ari001] for hackclub 🚀
 
-
+## Thanks for reading this 
+Demo link - 
 
 
