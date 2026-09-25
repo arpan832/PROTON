@@ -1,7 +1,7 @@
 so this is my own os for web inspired from the great Spider man 
 #SPIDEY-OS 
 
-##USAGE - 
+## Usage - 
 you can use this on your own browser there are many easter eggs from spiderman 
 
 ##PREVIEW - 
