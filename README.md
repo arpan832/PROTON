@@ -35,7 +35,7 @@ JSON.stringify({provider:'newsapi', apiKey:'YOUR_KEY'}))
 
 ## Made with love by [@Ari001] for hackclub 🚀
 
-## Thanks for reading this 
-Demo link - 
+## Thanks for reading this 🙏
+Demo link - https://arpan832.github.io/SpideyOs/
 
 
