@@ -10,6 +10,9 @@ you can use this on your own browser there are many easter eggs from spiderman
 
 ## How to use this on your Device - 
 you can clone this repo from 
+```bash
+git clone https://github.com/arpan832/SpideyOs/
+```
 
 
 
